@@ -11,7 +11,7 @@ def test_create_user_success():
     email = f"integration_{unique_id}@example.com"
 
     response = client.post(
-        "/users",
+        "/users/register",
         json={
             "username": username,
             "email": email,
@@ -31,7 +31,7 @@ def test_duplicate_user():
     email = f"duplicate_{unique_id}@example.com"
 
     first_response = client.post(
-        "/users",
+        "/users/register",
         json={
             "username": username,
             "email": email,
@@ -42,7 +42,7 @@ def test_duplicate_user():
     assert first_response.status_code == 200
 
     response = client.post(
-        "/users",
+        "/users/register",
         json={
             "username": username,
             "email": email,

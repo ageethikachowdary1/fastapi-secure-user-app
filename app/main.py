@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.database import Base, engine
 from app.api.users import router as users_router
+from app.api.calculations import router as calculations_router
 from app.models.user import User
 from app.models.calculation import Calculation
 
@@ -14,4 +15,6 @@ def read_root():
     return {"message": "FastAPI Secure User App is running"}
 
 
+# include routers
 app.include_router(users_router)
+app.include_router(calculations_router)
