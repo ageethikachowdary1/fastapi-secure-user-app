@@ -9,3 +9,4 @@ pytest
 httpx
 email-validator
 python-jose
+playwright
