@@ -1,0 +1,26 @@
+{
+  "name": "fastapi-secure-user-app",
+  "version": "1.0.0",
+  "description": "## Overview This project is a FastAPI application that implements a secure user model using SQLAlchemy and Pydantic. It supports user creation with password hashing, validation, and PostgreSQL integration.",
+  "main": "playwright.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ageethikachowdary1/fastapi-secure-user-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ageethikachowdary1/fastapi-secure-user-app/issues"
+  },
+  "homepage": "https://github.com/ageethikachowdary1/fastapi-secure-user-app#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1"
+  }
+}
