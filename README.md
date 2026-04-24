@@ -48,6 +48,7 @@ This project is a FastAPI application that implements a secure user model along 
 
 ---
 
+
 ## Technologies Used
 - Python 3.12
 - FastAPI
@@ -84,7 +85,36 @@ This project is a FastAPI application that implements a secure user model along 
 - Docker image automatically pushed after successful tests
 
 ---
+## Module 14: Complete BREAD Functionality for Calculations
 
+### Features
+- Frontend page for calculation BREAD operations
+- Browse all calculations
+- Read calculation by ID
+- Add new calculations
+- Edit existing calculations
+- Delete calculations
+- Client-side validation for numeric inputs and divide-by-zero
+- Playwright E2E tests for calculation workflow
+- GitHub Actions CI/CD pipeline runs tests automatically
+- Docker image pushed to Docker Hub after successful workflow
+
+### Frontend Page
+http://localhost:8000/static/calculations.html
+
+### Calculation BREAD Endpoints
+- GET `/calculations/` → Browse calculations
+- GET `/calculations/{id}` → Read calculation by ID
+- POST `/calculations/` → Add calculation
+- PUT `/calculations/{id}` → Edit calculation
+- DELETE `/calculations/{id}` → Delete calculation
+
+### Module 14 Test Results
+```text
+6 Playwright tests passed
+GitHub Actions workflow passed successfully
+
+---
 ## Project Structure
 ```
 fastapi-secure-user-app/
@@ -107,6 +137,7 @@ fastapi-secure-user-app/
 │ │-- static/
 │ │ ├── register.html
 │ │ └── login.html
+│ │ └── calculations.html
 │ │-- database.py
 │ │-- main.py
 │-- tests/
@@ -143,6 +174,7 @@ docker compose up --build
 ### Frontend Access
 - http://localhost:8000/static/register.html
 - http://localhost:8000/static/login.html
+- http://localhost:8000/static/calculations.html
 ---
 
 ## Running Tests
@@ -229,6 +261,7 @@ https://hub.docker.com/r/geethikachowdary/fastapi-secure-user-app
 ```
 14 passed, 2 warnings
 4 Playwright tests passed
+Playwright tests: 6 passed(for module 14)
 ```
 ## Learning Outcomes
 - Backend development with FastAPI
@@ -257,3 +290,13 @@ In this project, I worked across multiple modules to build a complete backend sy
 In Module 12, I integrated everything by building API routes and performing full CRUD operations with proper testing. I also gained experience using Docker and GitHub Actions for automation. Overall, this project improved my understanding of backend development, testing, and deployment workflows.
 
 In Module 13, I implemented JWT-based authentication and developed frontend pages for user interaction. I also created Playwright tests to validate both successful and error scenarios, ensuring reliability from a user perspective. Additionally, I enhanced the CI/CD pipeline to include full-stack testing and automated Docker deployment. This project improved my understanding of integrating backend, frontend, testing, and deployment into a unified workflow.
+
+In Module 14, I implemented complete BREAD functionality for calculations by creating frontend support for Browse, Read, Edit, Add, and Delete operations. I connected the frontend with FastAPI endpoints and ensured proper validation for calculation inputs such as divide-by-zero and valid operation types. I also extended Playwright testing to verify the full calculation workflow and confirmed successful execution through GitHub Actions and Docker deployment.
+
+### Status
+- Module 14 completed successfully
+- Frontend calculations page implemented
+- Full BREAD functionality working
+- Playwright tests passing
+- GitHub Actions workflow successful
+- Docker deployment successful
