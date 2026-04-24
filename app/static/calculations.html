@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculations</title>
+</head>
+<body>
+    <h1>Calculation BREAD Operations</h1>
+
+    <h2>Add Calculation</h2>
+    <form id="addForm">
+        <input type="number" id="addA" placeholder="First Number" required><br><br>
+        <input type="number" id="addB" placeholder="Second Number" required><br><br>
+        <select id="addType">
+            <option value="Add">Add</option>
+            <option value="Sub">Sub</option>
+            <option value="Multiply">Multiply</option>
+            <option value="Divide">Divide</option>
+        </select><br><br>
+        <button type="submit">Add Calculation</button>
+    </form>
+
+    <p id="addMessage"></p>
+
+    <hr>
+
+    <h2>Browse Calculations</h2>
+    <button id="browseButton">Browse Calculations</button>
+    <ul id="calculationList"></ul>
+
+    <hr>
+
+    <h2>Read Calculation</h2>
+    <input type="number" id="readId" placeholder="Calculation ID">
+    <button id="readButton">Read Calculation</button>
+    <p id="readResult"></p>
+
+    <hr>
+
+    <h2>Edit Calculation</h2>
+    <form id="editForm">
+        <input type="number" id="editId" placeholder="Calculation ID" required><br><br>
+        <input type="number" id="editA" placeholder="First Number" required><br><br>
+        <input type="number" id="editB" placeholder="Second Number" required><br><br>
+        <select id="editType">
+            <option value="Add">Add</option>
+            <option value="Sub">Sub</option>
+            <option value="Multiply">Multiply</option>
+            <option value="Divide">Divide</option>
+        </select><br><br>
+        <button type="submit">Edit Calculation</button>
+    </form>
+
+    <p id="editMessage"></p>
+
+    <hr>
+
+    <h2>Delete Calculation</h2>
+    <input type="number" id="deleteId" placeholder="Calculation ID">
+    <button id="deleteButton">Delete Calculation</button>
+    <p id="deleteMessage"></p>
+
+    <script>
+        function validateCalculation(a, b, type, messageElement) {
+            if (isNaN(a) || isNaN(b)) {
+                messageElement.textContent = "Both values must be numbers";
+                return false;
+            }
+
+            if (type === "Divide" && b === 0) {
+                messageElement.textContent = "Cannot divide by zero";
+                return false;
+            }
+
+            return true;
+        }
+
+        async function browseCalculations() {
+            const response = await fetch("/calculations/");
+            const data = await response.json();
+
+            const list = document.getElementById("calculationList");
+            list.innerHTML = "";
+
+            data.forEach(calc => {
+                const item = document.createElement("li");
+                item.textContent = `ID: ${calc.id}, ${calc.a} ${calc.type} ${calc.b} = ${calc.result}`;
+                list.appendChild(item);
+            });
+        }
+
+        document.getElementById("addForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const a = parseFloat(document.getElementById("addA").value);
+            const b = parseFloat(document.getElementById("addB").value);
+            const type = document.getElementById("addType").value;
+            const message = document.getElementById("addMessage");
+
+            if (!validateCalculation(a, b, type, message)) return;
+
+            const response = await fetch("/calculations/", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ a, b, type })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                message.textContent = `Calculation added successfully. Result: ${data.result}, ID: ${data.id}`;
+                browseCalculations();
+            } else {
+                message.textContent = data.detail || "Failed to add calculation";
+            }
+        });
+
+        document.getElementById("browseButton").addEventListener("click", browseCalculations);
+
+        document.getElementById("readButton").addEventListener("click", async () => {
+            const id = document.getElementById("readId").value;
+            const result = document.getElementById("readResult");
+
+            const response = await fetch(`/calculations/${id}`);
+            const data = await response.json();
+
+            if (response.ok) {
+                result.textContent = `ID: ${data.id}, ${data.a} ${data.type} ${data.b} = ${data.result}`;
+            } else {
+                result.textContent = data.detail || "Calculation not found";
+            }
+        });
+
+        document.getElementById("editForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const id = document.getElementById("editId").value;
+            const a = parseFloat(document.getElementById("editA").value);
+            const b = parseFloat(document.getElementById("editB").value);
+            const type = document.getElementById("editType").value;
+            const message = document.getElementById("editMessage");
+
+            if (!validateCalculation(a, b, type, message)) return;
+
+            const response = await fetch(`/calculations/${id}`, {
+                method: "PUT",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ a, b, type })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                message.textContent = `Calculation updated successfully. New result: ${data.result}`;
+                browseCalculations();
+            } else {
+                message.textContent = data.detail || "Failed to update calculation";
+            }
+        });
+
+        document.getElementById("deleteButton").addEventListener("click", async () => {
+            const id = document.getElementById("deleteId").value;
+            const message = document.getElementById("deleteMessage");
+
+            const response = await fetch(`/calculations/${id}`);
+            if (!response.ok) {
+                message.textContent = "Calculation not found";
+                return;
+            }
+
+            const deleteResponse = await fetch(`/calculations/${id}`, {
+                method: "DELETE"
+            });
+
+            const data = await deleteResponse.json();
+
+            if (deleteResponse.ok) {
+                message.textContent = data.message;
+                browseCalculations();
+            } else {
+                message.textContent = data.detail || "Failed to delete calculation";
+            }
+        });
+    </script>
+</body>
+</html>
