@@ -109,18 +109,13 @@ http://localhost:8000/static/calculations.html
 - PUT `/calculations/{id}` → Edit calculation
 - DELETE `/calculations/{id}` → Delete calculation
 
-### Module 14 Test Results
-```text
-6 Playwright tests passed
-GitHub Actions workflow passed successfully
 
----
-## Project Structure
+## Module 14 Test Results
+
 ```text
 6 Playwright tests passed
 GitHub Actions workflow passed successfully
 ```
-
 ---
 
 ## Project Structure
