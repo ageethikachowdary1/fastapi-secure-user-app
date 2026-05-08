@@ -116,47 +116,67 @@ GitHub Actions workflow passed successfully
 
 ---
 ## Project Structure
-```
-fastapi-secure-user-app/
-│-- app/
-│ │-- api/
-│ │ ├── users.py
-│ │ ├── calculations.py
-│ │ └── auth.py
-│ │-- core/
-│ │ ├── security.py
-│ │ ├── calculation_factory.py
-│ │ └── jwt_handler.py
-│ │-- models/
-│ │ ├── user.py
-│ │ └── calculation.py
-│ │-- schemas/
-│ │ ├── user.py
-│ │ ├── calculation.py
-│ │ └── auth.py
-│ │-- static/
-│ │ ├── register.html
-│ │ └── login.html
-│ │ └── calculations.html
-│ │-- database.py
-│ │-- main.py
-│-- tests/
-│ │-- test_security.py
-│ │-- test_schemas.py
-│ │-- test_users_integration.py
-│ │-- test_calculation_unit.py
-│ │-- test_calculation_db.py
-│ │-- test_calculation_api.py
-│ │-- test_e2e.spec.js
-│-- .github/workflows/ci.yml
-│-- Dockerfile
-│-- docker-compose.yml
-│-- requirements.txt
-│-- pytest.ini
-│-- playwright.config.js
-│-- README.md
+```text
+6 Playwright tests passed
+GitHub Actions workflow passed successfully
 ```
 
+---
+
+## Project Structure
+
+```text
+fastapi-secure-user-app/
+│
+├── app/
+│   ├── api/
+│   │   ├── users.py
+│   │   ├── calculations.py
+│   │   ├── auth.py
+│   │   └── reports.py
+│   │
+│   ├── core/
+│   │   ├── security.py
+│   │   ├── calculation_factory.py
+│   │   └── jwt_handler.py
+│   │
+│   ├── models/
+│   │   ├── user.py
+│   │   └── calculation.py
+│   │
+│   ├── schemas/
+│   │   ├── user.py
+│   │   ├── calculation.py
+│   │   ├── auth.py
+│   │   └── report.py
+│   │
+│   ├── static/
+│   │   ├── register.html
+│   │   ├── login.html
+│   │   ├── calculations.html
+│   │   └── report.html
+│   │
+│   ├── database.py
+│   └── main.py
+│
+├── tests/
+│   ├── test_security.py
+│   ├── test_schemas.py
+│   ├── test_users_integration.py
+│   ├── test_calculation_unit.py
+│   ├── test_calculation_db.py
+│   ├── test_calculation_api.py
+│   ├── test_report_api.py
+│   └── test_e2e.spec.js
+│
+├── .github/workflows/ci.yml
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+├── pytest.ini
+├── playwright.config.js
+└── README.md
+```
 ---
 
 ## Running the Application
