@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculation Report</title>
+</head>
+<body>
+    <h1>Calculation Report Dashboard</h1>
+
+    <button onclick="loadReport()">Load Report</button>
+
+    <div id="report"></div>
+
+    <script>
+        async function loadReport() {
+            const response = await fetch('/reports/calculations');
+            const data = await response.json();
+
+            document.getElementById('report').innerHTML = `
+                <p>Total Calculations: ${data.total_calculations}</p>
+                <p>Average Result: ${data.average_result}</p>
+                <p>Highest Result: ${data.highest_result}</p>
+                <p>Lowest Result: ${data.lowest_result}</p>
+                <p>Add Count: ${data.operation_counts.Add}</p>
+                <p>Sub Count: ${data.operation_counts.Sub}</p>
+                <p>Multiply Count: ${data.operation_counts.Multiply}</p>
+                <p>Divide Count: ${data.operation_counts.Divide}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

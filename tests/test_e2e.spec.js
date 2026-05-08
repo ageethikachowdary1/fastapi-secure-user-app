@@ -95,3 +95,15 @@ test('calculation divide by zero validation', async ({ page }) => {
 
   await expect(page.locator('#addMessage')).toHaveText('Cannot divide by zero');
 });
+
+test('calculation report dashboard loads report data', async ({ page }) => {
+  await page.goto('/static/report.html');
+
+  await page.click('button:text("Load Report")');
+
+  await expect(page.locator('#report')).toContainText('Total Calculations');
+  await expect(page.locator('#report')).toContainText('Average Result');
+  await expect(page.locator('#report')).toContainText('Highest Result');
+  await expect(page.locator('#report')).toContainText('Lowest Result');
+  await expect(page.locator('#report')).toContainText('Add Count');
+});

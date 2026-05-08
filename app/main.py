@@ -4,6 +4,7 @@ from app.database import Base, engine
 from app.api.users import router as users_router
 from app.api.calculations import router as calculations_router
 from app.api.auth import router as auth_router
+from app.api.reports import router as reports_router
 from app.models.user import User
 from app.models.calculation import Calculation
 
@@ -21,7 +22,7 @@ def read_root():
 app.include_router(users_router)
 app.include_router(calculations_router)
 app.include_router(auth_router)
-
+app.include_router(reports_router)
 
 # serve frontend
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
