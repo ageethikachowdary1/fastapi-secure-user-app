@@ -300,3 +300,151 @@ In Module 14, I implemented complete BREAD functionality for calculations by cre
 - Playwright tests passing
 - GitHub Actions workflow successful
 - Docker deployment successful
+
+
+---
+
+# Final Project Enhancement (Advanced Feature)
+
+## New Feature Added
+For the final project, I implemented an advanced Calculation Report Dashboard feature on top of the existing secure FastAPI calculator application.
+
+This feature provides analytics and reporting for stored calculations, allowing users to view usage statistics and summary insights.
+
+Implemented advanced reporting functionality includes:
+
+- Total calculations count
+- Operation usage counts (Add, Subtract, Multiply, Divide)
+- Average result value
+- Highest result
+- Lowest result
+- Recent calculations history
+- Frontend report dashboard
+- API report endpoint
+
+---
+
+## New Files Added for Final Project
+
+### Backend
+- `app/api/reports.py`
+- `app/schemas/report.py`
+
+### Frontend
+- `app/static/report.html`
+
+### Testing
+- `tests/test_report_api.py`
+
+---
+
+## Updated Project Structure
+
+```text
+app/
+├── api/
+│   ├── users.py
+│   ├── calculations.py
+│   ├── auth.py
+│   └── reports.py
+│
+├── schemas/
+│   ├── user.py
+│   ├── calculation.py
+│   ├── auth.py
+│   └── report.py
+│
+├── static/
+│   ├── register.html
+│   ├── login.html
+│   ├── calculations.html
+│   └── report.html
+│
+tests/
+├── test_security.py
+├── test_schemas.py
+├── test_users_integration.py
+├── test_calculation_unit.py
+├── test_calculation_db.py
+├── test_calculation_api.py
+├── test_report_api.py
+└── test_e2e.spec.js
+```
+
+---
+
+## Final Project Feature URL
+
+Calculation Report Dashboard:
+
+```text
+http://localhost:8000/static/report.html
+```
+
+Report API Endpoint:
+
+```text
+http://localhost:8000/reports/calculations
+```
+
+Swagger Documentation:
+
+```text
+http://localhost:8000/docs
+```
+
+---
+
+## Updated Test Results
+
+Backend Tests:
+
+```bash
+export DATABASE_URL=postgresql://postgres:postgres@localhost:5432/fastapi_db
+pytest -v
+```
+
+Expected:
+
+```text
+15 passed
+```
+
+Frontend Playwright Tests:
+
+```bash
+npx playwright test
+```
+
+Expected:
+
+```text
+7 passed
+```
+
+---
+
+## Final Project Reflection
+
+For the final project, I extended the secure FastAPI calculator application by implementing an advanced reporting dashboard feature.
+
+This feature required backend API development, database querying, schema design, frontend dashboard creation, automated API testing, and Playwright end-to-end testing.
+
+The reporting dashboard provides useful analytics such as total calculations, operation usage statistics, average results, highest and lowest values, and recent calculation summaries.
+
+Through this final project, I gained stronger experience in full-stack web development using FastAPI, PostgreSQL, SQLAlchemy, Docker, frontend integration, automated testing, and CI/CD deployment workflows.
+
+---
+
+## Final Project Completion Status
+
+ User registration working  
+ Secure login with JWT working  
+ Full BREAD calculation operations working  
+ Advanced reporting dashboard working  
+ API tests passing  
+ Pytest backend tests passing (15 passed)  
+ Playwright frontend tests passing (7 passed)  
+ Docker deployment working  
+ GitHub Actions CI/CD working  
+ Docker Hub deployment working
